@@ -18,11 +18,20 @@ import EditableItem from "./EditableItem";
 import { Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { setCardsInputs, setCardsOrder } from "../../../../appStore/cardsSlice";
-import { Card, Inpt, Template } from "../../../../appStore/interface/interface.model";
+import {
+  Card,
+  Inpt,
+  Template,
+} from "../../../../appStore/interface/interface.model";
+import { RootSate } from "../../../../appStore/store";
+import type {
+  Active,
+  Over,
+} from "../../../../../node_modules/@dnd-kit/core/dist/store/index.d.ts";
 
 export default function SortableCont() {
-  const selectedTemplate: Template = useSelector(
-    (state: any) => state.cardsReducer.selectedTemplate
+  const selectedTemplate: Template | null = useSelector(
+    (state: RootSate) => state.cardsReducer.selectedTemplate
   );
 
   const [items, setItems] = useState<string[]>([]);
@@ -39,7 +48,7 @@ export default function SortableCont() {
   useEffect(() => {
     const ids: string[] = [];
     const cardInp: Inpt[] = [];
-    selectedTemplate.comps.forEach((itm) => {
+    selectedTemplate?.comps.forEach((itm) => {
       ids.push(itm.id);
       cardInp.push({ id: itm.id, value: "" });
     });
@@ -50,7 +59,7 @@ export default function SortableCont() {
   useEffect(() => {
     const itemsData: Card[] = [];
     for (let i = 0; i < items.length; i++) {
-      const found = selectedTemplate.comps.find((itm) => items[i] === itm.id);
+      const found = selectedTemplate?.comps.find((itm) => items[i] === itm.id);
       if (found) {
         itemsData.push(found);
       }
@@ -68,13 +77,10 @@ export default function SortableCont() {
     >
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
         <Box overflow="scroll" height="calc( 100% - 4rem )">
-          {items.map((id, i) => {
-            const item = selectedTemplate.comps.find((itm) => itm.id === id);
+          {items.map((id) => {
+            const item = selectedTemplate?.comps.find((itm) => itm.id === id);
             return (
-              <Box
-                key={id}
-                py='0.1rem'
-              >
+              <Box key={id} py="0.1rem">
                 {item && (
                   <EditableItem
                     key={id}
@@ -91,16 +97,20 @@ export default function SortableCont() {
     </DndContext>
   );
 
-  function handleDragStart(event: any) {
-    setDraggedItemId(event.active.id);
+  function handleDragStart({ active }: { active: Active }) {
+    setDraggedItemId(`${active.id}`);
   }
-  function handleDragEnd(event: any) {
-    const { active, over } = event;
-
+  function handleDragEnd({
+    active,
+    over,
+  }: {
+    active: Active;
+    over: Over | null;
+  }) {
     if (active?.id && over?.id && active?.id !== over?.id) {
       setItems((items) => {
-        const oldIndex = items.indexOf(active.id);
-        const newIndex = items.indexOf(over.id);
+        const oldIndex = items.indexOf(`${active.id}`);
+        const newIndex = items.indexOf(`${over.id}`);
 
         return arrayMove(items, oldIndex, newIndex);
       });

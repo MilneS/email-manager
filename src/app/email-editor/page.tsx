@@ -7,11 +7,12 @@ import Preview from "../components/preview";
 import { Box, Divider } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { Template } from "../../appStore/interface/interface.model";
+import {RootSate} from '../../appStore/store'
 
 function EmailEditor() {
   const dispatch = useDispatch();
-  const selectedTemplate: Template = useSelector(
-    (state: any) => state.cardsReducer.selectedTemplate
+  const selectedTemplate: Template | null = useSelector(
+    (state: RootSate) => state.cardsReducer.selectedTemplate
   );
 
   useEffect(() => {
@@ -20,7 +21,7 @@ function EmailEditor() {
 
   return (
     <>
-      {selectedTemplate.comps && (
+      {selectedTemplate && (
         <Box
           sx={{
             display: "flex",

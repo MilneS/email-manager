@@ -3,12 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import { Card, Inpt, Template } from "./interface/interface.model";
 
 const initialState: {
-  selectedTemplate: Template | {};
+  selectedTemplate: Template | null;
   cardsOrder: Card[];
   cardsInputs: Inpt[];
   selectedCard: string | null;
 } = {
-  selectedTemplate: {},
+  selectedTemplate: null,
   cardsOrder: [],
   cardsInputs: [],
   selectedCard: null,

@@ -1,10 +1,12 @@
 "use client";
 import { configureStore } from "@reduxjs/toolkit";
 import cardReducer from "./cardsSlice";
+import authReducer from "./authSlice";
 
 export const store = configureStore({
   reducer: {
     cardsReducer: cardReducer,
+    authReducer: authReducer,
   },
 });
 

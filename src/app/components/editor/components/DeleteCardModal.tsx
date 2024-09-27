@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSelectedCard, setSelectedTemplate } from "../../../../appStore/cardsSlice";
 import { Template } from "../../../../appStore/interface/interface.model";
 import { IconButton } from "@mui/material";
+import {RootSate} from '../../../../appStore/store'
+
 
 const style = {
   position: "absolute",
@@ -26,8 +28,8 @@ const style = {
 
 const DeleteCardModal = ({ itemId }: { itemId: string }) => {
   const [open, setOpen] = React.useState(false);
-  const selectedTemplate: Template = useSelector(
-    (state: any) => state.cardsReducer.selectedTemplate
+  const selectedTemplate: Template | null  = useSelector(
+    (state: RootSate) => state.cardsReducer.selectedTemplate
   );
   const dispatch = useDispatch();
 

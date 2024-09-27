@@ -1,6 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import { Card } from "../../../../appStore/interface/interface.model";
 import { useSelector } from "react-redux";
+import {RootSate} from '../../../../appStore/store'
+
 
 const PreviewItem = ({
   item,
@@ -10,7 +12,7 @@ const PreviewItem = ({
   inputValue: string;
 }) => {
   const selectedCard = useSelector(
-    (state: any) => state.cardsReducer.selectedCard
+    (state: RootSate) => state.cardsReducer.selectedCard
   );
   const itemStyle = {
     padding: "0.5rem",

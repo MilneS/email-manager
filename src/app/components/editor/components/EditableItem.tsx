@@ -3,17 +3,31 @@ import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useDispatch, useSelector } from "react-redux";
-import { setCardsInputs, setSelectedCard } from "../../../../appStore/cardsSlice";
-import { Inpt } from "../../../../appStore/interface/interface.model";
+import {
+  setCardsInputs,
+  setSelectedCard,
+} from "../../../../appStore/cardsSlice";
+import {
+  Card as Cards,
+  Inpt,
+} from "../../../../appStore/interface/interface.model";
 import { useState } from "react";
 import DeleteCardModal from "./DeleteCardModal";
+import { RootSate } from "../../../../appStore/store";
 
-const EditableItem = (props: any) => {
+const EditableItem = ({
+  itemId,
+  item,
+  isGrabbed,
+}: {
+  itemId: string;
+  item: Cards;
+  isGrabbed: boolean;
+}) => {
   const [itemVal, setItemVal] = useState("");
-  const { itemId, isGrabbed, item } = props;
   const dispatch = useDispatch();
   const cardsInputs = useSelector(
-    (state: any) => state.cardsReducer.cardsInputs
+    (state: RootSate) => state.cardsReducer.cardsInputs
   );
 
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -63,7 +77,7 @@ const EditableItem = (props: any) => {
         </Box>
         <TextField
           // error
-          helperText={`${props.item.maxChar} characters max`}
+          helperText={`${item.maxChar} characters max`}
           id={itemId}
           label={`Type your ${item.name} here`}
           fullWidth
