@@ -11,9 +11,12 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
+import HomeIcon from "@mui/icons-material/Home";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface Props {
   /**
@@ -24,11 +27,16 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact"];
+const navItems = ["Editor", "Account"];
+const navItemsLinks = {
+  editor: "/email-editor",
+  account: "/account",
+};
 
 export default function DrawerAppBar(props: Props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const router = useRouter();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -36,9 +44,11 @@ export default function DrawerAppBar(props: Props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
-      </Typography>
+      <Link href="/">
+        <Typography variant="h6" sx={{ my: 2 }}>
+          Home
+        </Typography>
+      </Link>
       <Divider />
       <List>
         {navItems.map((item) => (
@@ -51,6 +61,12 @@ export default function DrawerAppBar(props: Props) {
       </List>
     </Box>
   );
+
+  const navigateToItemLink = (item: string) => {
+    const itemLink =
+      navItemsLinks[item.toLocaleLowerCase() as keyof typeof navItemsLinks];
+    router.push(`${itemLink}`);
+  };
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
@@ -74,11 +90,21 @@ export default function DrawerAppBar(props: Props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            MUI
+            <IconButton
+              color="inherit"
+              aria-label="home"
+              onClick={() => router.push("/")}
+            >
+              <HomeIcon fontSize="large" />
+            </IconButton>
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: "#fff" }}>
+              <Button
+                key={item}
+                sx={{ color: "#fff" }}
+                onClick={() => navigateToItemLink(item)}
+              >
                 {item}
               </Button>
             ))}
@@ -105,8 +131,7 @@ export default function DrawerAppBar(props: Props) {
           {drawer}
         </Drawer>
       </nav>
-      <Box component="main" sx={{ p: 4 }}>
-      </Box>
+      <Box component="main" sx={{ p: 4 }}></Box>
     </Box>
   );
 }
