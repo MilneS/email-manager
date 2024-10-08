@@ -6,7 +6,7 @@ export default function Editor() {
   return (
     <Box
       width="40%"
-      height="100vh"
+      height="100%"
       paddingBottom="0.1rem"
       sx={{ backgroundColor: "#b5b5b5" }}
     >

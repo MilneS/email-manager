@@ -27,6 +27,7 @@ function EmailEditor() {
             display: "flex",
             flexDirection: "row",
             justifyContent: "flex-start",
+            height:'100%'
           }}
         >
           <Editor />

@@ -5,7 +5,7 @@ import Sheet from "./Sheet";
 const style = {
   py: "3rem",
   backgroundColor: "#878787",
-  height: "calc( 100% - 10rem )",
+  height: "calc(100% - 4rem)",
   display: "flex",
   justifyContent: "center",
   overflow: "scroll",
@@ -13,7 +13,7 @@ const style = {
 
 const Preview = () => {
   return (
-    <Box width="60%" height="100vh">
+    <Box width="60%" minHeight="100%">
       <Box>
         <SectionTitle sectionName={"Preview"} />
       </Box>

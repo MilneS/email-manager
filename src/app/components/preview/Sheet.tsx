@@ -20,7 +20,7 @@ const Sheet = () => {
       sx={{
         backgroundColor: "#ffffff",
         height: "fit-content",
-        minHeight: "calc( 100% - 6rem )",
+        minHeight: "100%",
         width: "70%",
         padding: "3rem",
       }}
