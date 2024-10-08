@@ -12,3 +12,8 @@ export interface Inpt {
   id: string;
   value: string;
 }
+export interface SingleTemplate {
+  id: string;
+  isReorderable: boolean;
+  comps: Card[];
+}

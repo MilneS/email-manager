@@ -1,13 +1,13 @@
 "use client";
-import { firstTemplate } from "../../utils";
-import { setSelectedTemplate } from "../../appStore/cardsSlice";
+import { firstTemplate } from "../../../utils";
+import { setSelectedTemplate } from "../../../appStore/cardsSlice";
 import { useEffect } from "react";
-import Editor from "../components/editor";
-import Preview from "../components/preview";
+import Editor from "../../components/editor";
+import Preview from "../../components/preview";
 import { Box, Divider } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { Template } from "../../appStore/interface/interface.model";
-import {RootSate} from '../../appStore/store'
+import { Template } from "../../../appStore/interface/interface.model";
+import {RootSate} from '../../../appStore/store'
 
 function EmailEditor() {
   const dispatch = useDispatch();
