@@ -5,15 +5,11 @@ export interface Card {
   name: string;
 }
 export interface Template {
+  id: string;
   isReorderable: boolean;
   comps: Card[];
 }
 export interface Inpt {
   id: string;
   value: string;
-}
-export interface SingleTemplate {
-  id: string;
-  isReorderable: boolean;
-  comps: Card[];
 }

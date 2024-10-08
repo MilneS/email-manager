@@ -54,7 +54,7 @@ export default function SortableCont() {
     });
     setItems(ids);
     dispatch(setCardsInputs(cardInp));
-  }, []);
+  }, [selectedTemplate]);
 
   useEffect(() => {
     const itemsData: Card[] = [];
