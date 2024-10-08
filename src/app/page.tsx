@@ -1,5 +1,22 @@
-import Link from "next/link";
+import { Box } from "@mui/material";
+import HomeCard from "./components/HomeCard";
 
 export default function Home() {
-  return <Link href="/email-editor">home</Link>;
+  const style = {
+    height: "100%",
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "10rem",
+  };
+
+  return (
+    <Box style={style}>
+      <Box mr={10}>
+        <HomeCard cardTitle="New email" />
+      </Box>
+      <Box>
+        <HomeCard cardTitle="My emails" />
+      </Box>
+    </Box>
+  );
 }
