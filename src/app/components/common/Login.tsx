@@ -3,8 +3,12 @@ import { RootSate } from "@/appStore/store";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { styled } from "@mui/material/styles";
+import { useState } from "react";
+import { loginFields, registerFields } from "@/utils";
 
 const Login = () => {
+  const [isRegister, setIsRegister] = useState(false);
+
   const { register, handleSubmit } = useForm();
   const centerColStyle = {
     display: "flex",
@@ -16,7 +20,7 @@ const Login = () => {
     width: "25rem",
     height: "fit-content",
     p: "3rem",
-    m:0
+    m: 0,
   };
   const StyledTextField = styled(TextField)(() => ({
     marginBottom: "1rem",
@@ -26,7 +30,7 @@ const Login = () => {
   return (
     <Card sx={cardStyle}>
       <Typography variant="h5" mb="2rem">
-        Login
+        {isRegister ? "Register" : "Login"}
       </Typography>
       <Box
         sx={centerColStyle}
@@ -35,25 +39,25 @@ const Login = () => {
         autoComplete="off"
         onSubmit={handleSubmit((data) => console.log(data))}
       >
-        <StyledTextField
-          {...register("id")}
-          id="outlined-basic"
-          label="ID"
-          variant="outlined"
-        />
-        <StyledTextField
-          {...register("password")}
-          id="outlined-basic"
-          label="Password"
-          variant="outlined"
-        />
+        {(isRegister ? registerFields : loginFields).map((field) => (
+          <StyledTextField
+            key={field.id}
+            {...register(field.id)}
+            id="outlined-basic"
+            label={field.name}
+            variant="outlined"
+          />
+        ))}
         <Button type="submit" variant="contained" sx={{ my: "1rem" }}>
           Submit
         </Button>
       </Box>
-
-      <Button type="submit" variant="text" sx={{ marginTop: "2rem" }}>
-        or sign up
+      <Button
+        variant="text"
+        sx={{ marginTop: "2rem" }}
+        onClick={() => setIsRegister(!isRegister)}
+      >
+        {isRegister ? "or login" : "or sign up"}
       </Button>
     </Card>
   );

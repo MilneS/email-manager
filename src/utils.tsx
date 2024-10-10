@@ -44,3 +44,28 @@ export const templates: Template[] = [
     ],
   },
 ];
+
+export const loginFields = [
+  {
+    name: "ID",
+    id: "id",
+  },
+  {
+    name: "Password",
+    id: "password",
+  },
+];
+export const registerFields = [
+  {
+    name: "ID",
+    id: "id",
+  },
+  {
+    name: "Password",
+    id: "password",
+  },
+  {
+    name: "Confirm password",
+    id: "confirmpassword",
+  },
+];
