@@ -1,4 +1,4 @@
-import { Template } from "./appStore/interface/interface.model";
+import { LoginField, Template } from "./appStore/interface/interface.model";
 
 export const templates: Template[] = [
   {
@@ -45,27 +45,47 @@ export const templates: Template[] = [
   },
 ];
 
-export const loginFields = [
+export const loginFields: LoginField[] = [
   {
-    name: "ID",
-    id: "id",
+    name: "Email",
+    id: "loginEmail",
+    isRequired: "Please enter an email",
+    minLength: 8,
+    maxLength: 20,
+    type: "email",
   },
   {
     name: "Password",
-    id: "password",
+    id: "loginPassword",
+    isRequired: "Please enter a password",
+    minLength: 8,
+    maxLength: 20,
+    type: "password",
   },
 ];
 export const registerFields = [
   {
-    name: "ID",
-    id: "id",
+    name: "Email",
+    id: "registerEmail",
+    isRequired: "Please enter an email",
+    minLength: 8,
+    maxLength: 20,
+    type: "email",
   },
   {
     name: "Password",
-    id: "password",
+    id: "registerPassword",
+    isRequired: "Please enter a password",
+    minLength: 8,
+    maxLength: 20,
+    type: "password",
   },
   {
     name: "Confirm password",
-    id: "confirmpassword",
+    id: "confirmPassword",
+    isRequired: "Please confirm your password",
+    minLength: 8,
+    maxLength: 20,
+    type: "password",
   },
 ];

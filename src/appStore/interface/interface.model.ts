@@ -13,3 +13,11 @@ export interface Inpt {
   id: string;
   value: string;
 }
+export interface LoginField {
+  name: string;
+  id: string;
+  isRequired: string;
+  minLength: number;
+  maxLength: number;
+  type: string;
+}

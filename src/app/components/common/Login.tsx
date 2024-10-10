@@ -5,27 +5,67 @@ import { useForm } from "react-hook-form";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { loginFields, registerFields } from "@/utils";
+import { LoginField } from "@/appStore/interface/interface.model";
+
+const centerColStyle = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  flexDirection: "column",
+};
+const cardStyle = {
+  width: "25rem",
+  height: "fit-content",
+  p: "3rem",
+  m: 0,
+};
+const StyledTextField = styled(TextField)(() => ({
+  marginBottom: "1rem",
+  width: "100%",
+}));
 
 const Login = () => {
   const [isRegister, setIsRegister] = useState(false);
 
-  const { register, handleSubmit } = useForm();
-  const centerColStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
+  const {
+    register,
+    watch,
+    handleSubmit,
+    reset,
+    clearErrors,
+    formState: { errors },
+  } = useForm();
+
+  const validationData = (field: LoginField) => {
+    return {
+      required: field.isRequired,
+      validate:
+        field.id === "confirmPassword"
+          ? (val: string) => {
+              if (
+                watch(isRegister ? "registerPassword" : "loginPassword") != val
+              ) {
+                return "Your passwords do no match.";
+              }
+            }
+          : undefined,
+      pattern:
+        field.type === "email"
+          ? {
+              value: /\S+@\S+\.\S+/,
+              message: "Please enter a valid email address",
+            }
+          : undefined,
+      minLength: {
+        value: field.minLength,
+        message: `This field needs to be at least ${field.minLength} chars. long`,
+      },
+      maxLength: {
+        value: field.maxLength,
+        message: `This cannot exceed ${field.maxLength} chars.`,
+      },
+    };
   };
-  const cardStyle = {
-    width: "25rem",
-    height: "fit-content",
-    p: "3rem",
-    m: 0,
-  };
-  const StyledTextField = styled(TextField)(() => ({
-    marginBottom: "1rem",
-    width: "100%",
-  }));
 
   return (
     <Card sx={cardStyle}>
@@ -39,15 +79,25 @@ const Login = () => {
         autoComplete="off"
         onSubmit={handleSubmit((data) => console.log(data))}
       >
-        {(isRegister ? registerFields : loginFields).map((field) => (
-          <StyledTextField
-            key={field.id}
-            {...register(field.id)}
-            id="outlined-basic"
-            label={field.name}
-            variant="outlined"
-          />
-        ))}
+        {(isRegister ? registerFields : loginFields).map(
+          (field: LoginField) => (
+            <StyledTextField
+              key={field.id}
+              {...register(field.id, validationData(field))}
+              id={`field-${field.id}`}
+              type={field.type}
+              label={field.name}
+              variant="outlined"
+              error={!!errors[field.id]}
+              helperText={
+                errors[field.id]?.message
+                  ? `${errors[field.id]?.message}`
+                  : undefined
+              }
+              onChange={() => clearErrors(field.id)}
+            />
+          )
+        )}
         <Button type="submit" variant="contained" sx={{ my: "1rem" }}>
           Submit
         </Button>
@@ -55,7 +105,10 @@ const Login = () => {
       <Button
         variant="text"
         sx={{ marginTop: "2rem" }}
-        onClick={() => setIsRegister(!isRegister)}
+        onClick={() => {
+          setIsRegister(!isRegister);
+          reset();
+        }}
       >
         {isRegister ? "or login" : "or sign up"}
       </Button>
