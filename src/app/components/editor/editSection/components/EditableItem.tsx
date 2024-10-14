@@ -6,14 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setCardsInputs,
   setSelectedCard,
-} from "../../../../appStore/cardsSlice";
+} from "../../../../../appStore/cardsSlice";
 import {
   Card as Cards,
   Inpt,
-} from "../../../../appStore/interface/interface.model";
+} from "../../../../../appStore/interface/interface.model";
 import { useState } from "react";
 import DeleteCardModal from "./DeleteCardModal";
-import { RootSate } from "../../../../appStore/store";
+import { RootSate } from "../../../../../appStore/store";
 
 const EditableItem = ({
   itemId,
@@ -70,7 +70,6 @@ const EditableItem = ({
     >
       <Box width="3rem" />
       <CardContent sx={{ width: "100%", px: 0 }}>
-        {/* @ts-ignore */}
         <Box sx={TopBoxStyle} pb={1}>
           <Typography variant="h6">{item.name}</Typography>
           <DeleteCardModal itemId={item.id} />

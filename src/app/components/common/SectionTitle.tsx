@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import SaveModal from "../editor/components/SaveModal";
+import SaveModal from "../editor/editSection/components/SaveModal";
 
 const SectionTitle = ({ sectionName }: { sectionName: string }) => {
   return (

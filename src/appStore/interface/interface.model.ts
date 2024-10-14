@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export interface Card {
   el: string;
   id: string;
@@ -7,6 +9,7 @@ export interface Card {
 export interface Template {
   id: string;
   isReorderable: boolean;
+  templateImage: StaticImageData;
   comps: Card[];
 }
 export interface Inpt {

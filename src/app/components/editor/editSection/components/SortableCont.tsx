@@ -17,17 +17,17 @@ import { restrictToFirstScrollableAncestor } from "@dnd-kit/modifiers";
 import EditableItem from "./EditableItem";
 import { Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { setCardsInputs, setCardsOrder } from "../../../../appStore/cardsSlice";
+import { setCardsInputs, setCardsOrder } from "../../../../../appStore/cardsSlice";
 import {
   Card,
   Inpt,
   Template,
-} from "../../../../appStore/interface/interface.model";
-import { RootSate } from "../../../../appStore/store";
+} from "../../../../../appStore/interface/interface.model";
+import { RootSate } from "../../../../../appStore/store";
 import type {
   Active,
   Over,
-} from "../../../../../node_modules/@dnd-kit/core/dist/store/index.d.ts";
+} from "../../../../../../node_modules/@dnd-kit/core/dist/store/index.d.ts";
 
 export default function SortableCont() {
   const selectedTemplate: Template | null = useSelector(

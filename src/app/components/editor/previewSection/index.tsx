@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import SectionTitle from "../common/SectionTitle";
+import SectionTitle from "../../common/SectionTitle";
 import Sheet from "./Sheet";
 
 const style = {

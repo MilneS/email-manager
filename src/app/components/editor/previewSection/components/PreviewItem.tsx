@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
-import { Card } from "../../../../appStore/interface/interface.model";
+import { Card } from "../../../../../appStore/interface/interface.model";
 import { useSelector } from "react-redux";
-import {RootSate} from '../../../../appStore/store'
+import {RootSate} from '../../../../../appStore/store'
 
 
 const PreviewItem = ({

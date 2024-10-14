@@ -5,11 +5,16 @@ import { Grid2 as Grid, Paper, Box } from "@mui/material";
 import { templates } from "@/utils";
 import { Template } from "@/appStore/interface/interface.model";
 import Link from "next/link";
+import Image from "next/image";
 
 const Item = styled(Paper)(({ theme }) => ({
-  height: "18rem",
+  height: "fit-content",
+  width: "fit-content",
   backgroundColor: "#fff",
-  "&:hover": { backgroundColor: "#f5f8fa" },
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  "&:hover": { backgroundColor: "#e3f2fc" },
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
@@ -35,7 +40,14 @@ export default function Templates() {
             return (
               <Grid size={6} key={template.id}>
                 <Link href={`/email-editor/${template.id}`}>
-                  <Item>{template.id}</Item>
+                  <Item>
+                    <Image
+                      src={template.templateImage}
+                      width={200}
+                      height={240}
+                      alt={`${template.id} image`}
+                    />
+                  </Item>
                 </Link>
               </Grid>
             );

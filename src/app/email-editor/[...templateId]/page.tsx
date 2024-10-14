@@ -2,8 +2,8 @@
 import { templates } from "../../../utils";
 import { setSelectedTemplate } from "../../../appStore/cardsSlice";
 import { useEffect } from "react";
-import Editor from "../../components/editor";
-import Preview from "../../components/preview";
+import Editor from "../../components/editor/editSection";
+import Preview from "../../components/editor/previewSection";
 import { Box, Divider } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { Template } from "../../../appStore/interface/interface.model";

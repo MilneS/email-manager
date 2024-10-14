@@ -5,10 +5,10 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedCard, setSelectedTemplate } from "../../../../appStore/cardsSlice";
-import { Template } from "../../../../appStore/interface/interface.model";
+import { setSelectedCard, setSelectedTemplate } from "../../../../../appStore/cardsSlice";
+import { Template } from "../../../../../appStore/interface/interface.model";
 import { IconButton } from "@mui/material";
-import {RootSate} from '../../../../appStore/store'
+import {RootSate} from '../../../../../appStore/store'
 
 
 const style = {
